@@ -35,7 +35,48 @@ Crear una función arrow, que devuelva una clase en ES6 que contendrá dos méto
 Crear un propiedad estática contadorInstancias que me indique cuantas instancias hay de esa clase.
 */
 const crearClase = () => {
-  return;
+  class miClase {
+    static contadorInstancias;
+
+    constructor(texto) {
+      this.texto = texto;
+      if (!miClase.contadorInstancias) miClase.contadorInstancias = 0;
+      miClase.contadorInstancias++;
+    }
+
+    contadorPalabras() {
+      let cantidadPalabras = 0;
+
+      if (typeof this.texto != "string") {
+        cantidadPalabras = -1;
+      } else if (this.texto.length != 0) {
+        let textoSeparado = this.texto.split(" ");
+        cantidadPalabras = textoSeparado.length;
+      } else {
+        cantidadPalabras = 0;
+      }
+
+      return cantidadPalabras;
+    }
+    hayNumeros() {
+      let respuesta;
+
+      if (typeof this.texto != "string") {
+        respuesta = -1;
+      } else {
+        let hayNumeros = this.texto.match(/[0-9]/g);
+        if (hayNumeros != null) {
+          respuesta = true;
+        } else {
+          respuesta = false;
+        }
+      }
+
+      return respuesta;
+    }
+  }
+
+  return miClase;
 };
 
 module.exports = {
